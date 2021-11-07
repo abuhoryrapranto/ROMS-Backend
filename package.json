@@ -18,7 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.0",
     "nodemon": "^2.0.12",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "slugify": "^1.6.1"
   },
   "devDependencies": {
     "sequelize-cli": "^6.3.0"

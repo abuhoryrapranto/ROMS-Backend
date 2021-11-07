@@ -5,7 +5,6 @@ const {registerValidation, loginValidation} = require('../validation/auth');
 const bcrypt = require("bcrypt");
 const { uniqueEmail, uniquePhone } = require('../helpers/checkHelper');
 var jwt = require('jsonwebtoken');
-const { func } = require('joi');
 
 async function register(req, res) {
     try {
