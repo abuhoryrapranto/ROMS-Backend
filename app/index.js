@@ -6,6 +6,11 @@ require('dotenv').config()
 const port = process.env.PORT || 5000
 const authRoutes = require('./routes/auth')
 
+app.use(function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+  next();
+});
+
 app.use('/api', authRoutes);
 
 app.listen(port, () => {

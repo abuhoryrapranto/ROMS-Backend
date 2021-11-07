@@ -1,9 +1,11 @@
 //Controller for the routes
 
 const { User } = require('../models');
-const {registerValidation} = require('../validation/auth');
+const {registerValidation, loginValidation} = require('../validation/auth');
 const bcrypt = require("bcrypt");
 const { uniqueEmail, uniquePhone } = require('../helpers/checkHelper');
+var jwt = require('jsonwebtoken');
+const { func } = require('joi');
 
 async function register(req, res) {
     try {
@@ -31,6 +33,30 @@ async function register(req, res) {
     }
 }
 
+async function login(req, res) {
+    try {
+        const value = await loginValidation.validateAsync(req.body, {abortEarly: false});
+        if(value) {
+            const existEmail = await User.findOne({ where: { email: req.body.email } });
+            if(existEmail) {
+                const match = await bcrypt.compare(req.body.password, existEmail.password);
+                if(match) {
+                    const token = jwt.sign({data: existEmail.email}, process.env.JWT_SECRET, { expiresIn: '10h' });
+                    return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
+                }else {
+                    return res.status(404).send({'status': 404,'message': "Password not match"});
+                }
+            }else {
+                return res.status(404).send({'status': 404,'message': "Email not found"});
+            }
+        }
+    }
+    catch(err) {
+        return res.status(422).send({'status': 422,'message': err});
+    }
+}
+
 module.exports = {
-    register: register
+    register: register,
+    login: login
 }
