@@ -5,7 +5,7 @@ const saveMenuValidation = Joi.object({
                 .required()
                 .label('Menu Name'),
 
-    image: Joi.string(),
+    categoryId: Joi.number(),
     
     variants: Joi.string()
                 .label('Variants'),
@@ -25,6 +25,24 @@ const saveMenuValidation = Joi.object({
     status: Joi.number()           
 });
 
+const updateMenuValidation = Joi.object({
+    name: Joi.string()
+                .label('Menu Name'),
+
+    mainPrice: Joi.number()
+                    .label('Main Price'),
+
+    offerPrice: Joi.number()
+                    .label('Offer Price'),
+    
+    type: Joi.string()
+                .valid('regular', 'addon')
+                .label('Menu Type'),
+                
+    status: Joi.number()           
+});
+
 module.exports = {
-    saveMenuValidation: saveMenuValidation
+    saveMenuValidation: saveMenuValidation,
+    updateMenuValidation : updateMenuValidation
 }

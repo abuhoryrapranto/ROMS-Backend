@@ -20,6 +20,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { model: 'Categories', key: 'id' }
+      },
       variants: {
         type: Sequelize.STRING,
         allowNull: true,
