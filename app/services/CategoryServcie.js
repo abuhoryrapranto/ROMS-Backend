@@ -1,6 +1,12 @@
 const { Category } = require('../models');
 const {saveCategoryValidation, updateCategoryValidation} = require('../validation/category');
 
+async function getAllCategories(req, res) {
+    const categories = await Category.findAll();
+    if(categories)
+        return res.status(201).send({'status': 200,'message': "Categories found", 'data': categories});
+    return res.status(404).send({'status': 404,'message': 'Categories not found'});
+}
 async function save(req, res) {
     try {
         const value = await saveCategoryValidation.validateAsync(req.body, {abortEarly: false});
@@ -39,5 +45,6 @@ async function update(req, res, id) {
 
 module.exports = {
     save : save,
-    update : update
+    update : update,
+    getAllCategories : getAllCategories
 }

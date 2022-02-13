@@ -1,5 +1,8 @@
 const categoryService = require('../services/CategoryServcie');
 
+async function getAllCategories(req, res) {
+    await categoryService.getAllCategories(req, res);
+}
 async function saveCategory(req, res) {
     await categoryService.save(req, res);
 }
@@ -11,5 +14,6 @@ async function updateCategory(req, res, id) {
 
 module.exports = {
     saveCategory : saveCategory,
-    updateCategory : updateCategory
+    updateCategory : updateCategory,
+    getAllCategories : getAllCategories
 }

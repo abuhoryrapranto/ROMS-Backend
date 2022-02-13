@@ -5,6 +5,7 @@ const {registerValidation, loginValidation} = require('../validation/auth');
 const bcrypt = require("bcrypt");
 const { uniqueEmail, uniquePhone } = require('../helpers/checkHelper');
 var jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 
 async function register(req, res) {
     try {
@@ -16,6 +17,7 @@ async function register(req, res) {
             if(existPhone) return res.status(400).send({'status': 400,'message': "\"Phone\" is already exist"});
             else {
                 const user = {
+                    'uuid': uuidv4(),
                     'fullName': req.body.fullName,
                     'email': req.body.email,
                     'phone': req.body.phone,
@@ -40,7 +42,7 @@ async function login(req, res) {
             if(existEmail) {
                 const match = await bcrypt.compare(req.body.password, existEmail.password);
                 if(match) {
-                    const token = jwt.sign({data: existEmail.email}, process.env.JWT_SECRET, { expiresIn: '10h' });
+                    const token = jwt.sign({id:existEmail.uuid, email: existEmail.email}, process.env.JWT_SECRET, { expiresIn: '10h' });
                     return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
                 }else {
                     return res.status(404).send({'status': 404,'message': "Password not match"});

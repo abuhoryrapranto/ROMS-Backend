@@ -2,6 +2,13 @@ const { Menu, Category } = require('../models');
 const {saveMenuValidation, updateMenuValidation} = require('../validation/menu');
 const {generateSlug} = require('../helpers/baseHelper');
 
+async function getAllMenus(req, res) {
+    const menus = await Menu.findAll({ include: [Category]});
+    if(menus)
+        return res.status(201).send({'status': 200,'message': "Categories found", 'data': menus});
+    return res.status(404).send({'status': 404,'message': 'Categories not found'});
+}
+
 async function save(req, res) {
     try {
         const value = await saveMenuValidation.validateAsync(req.body, {abortEarly: false});
@@ -62,5 +69,6 @@ async function update(req, res, id) {
 
 module.exports = {
     save : save,
-    update : update
+    update : update,
+    getAllMenus : getAllMenus
 }

@@ -3,6 +3,7 @@ const app = express()
 var v1Router = express.Router()
 var menuController = require('../controllers/MenuController')
 
+v1Router.get('/all', menuController.getAllMenus)
 v1Router.post('/save', menuController.saveMenu)
 v1Router.put('/update/:id', menuController.updateMenu)
 
