@@ -14,9 +14,8 @@ module.exports = {
         allowNull: false
       },
       orderId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Orders', key: 'id' }
+        type: Sequelize.STRING,
+        allowNull: false
       },
       tableNumber: {
         type: Sequelize.INTEGER,

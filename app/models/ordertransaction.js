@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   OrderTransaction.init({
-    id: DataTypes.INTEGER
+    
   }, {
     sequelize,
     modelName: 'OrderTransaction',

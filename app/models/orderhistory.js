@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   OrderHistory.init({
-    id: DataTypes.INTEGER
+    uuid: DataTypes.UUID,
+    orderId: DataTypes.STRING,
+    tableNumber: DataTypes.INTEGER,
+    deliveryPerson: DataTypes.STRING,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'OrderHistory',
