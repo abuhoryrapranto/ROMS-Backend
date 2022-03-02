@@ -1,6 +1,17 @@
 const Joi = require('joi');
 
-const validateData = Joi.object({
+let saveOrderValidation = Joi.object({
+
+    order: Joi.array().items({
+        menuId: Joi.number()  
+            .required()
+            .label('Menu name'), 
+    
+        variant: Joi.string(),
+
+        price: Joi.required()
+    }).required(),
+
     customerName: Joi.string()
                 .label('Customer name'),
                 
@@ -9,18 +20,26 @@ const validateData = Joi.object({
     
     customerAddress: Joi.string()  
                     .label('Customer address'),
+    tableNumber: Joi.number()  
+                    .integer() 
+                    .label('Table number'),
 
-    menuId: Joi.number()  
-            .required()
-            .label('Menu name'), 
-    
-    variant: Joi.string(),
+    deliveryPerson: Joi.string()
+                .label('Delivery person'),
 
-    price: Joi.required()
 });
 
-let saveOrderValidation = Joi.array().items(validateData);
+const orderStatusChangeValidation = Joi.object({
+    
+    code: Joi.string()
+                .required(),
+                
+    status: Joi.string()  
+                .valid('pending','cooking', 'ready', 'served', 'canceled')
+                .required()
+});
 
 module.exports = {
-    saveOrderValidation: saveOrderValidation
+    saveOrderValidation: saveOrderValidation,
+    orderStatusChangeValidation: orderStatusChangeValidation
 }

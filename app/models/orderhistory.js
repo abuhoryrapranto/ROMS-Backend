@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   OrderHistory.init({
     uuid: DataTypes.UUID,
-    orderId: DataTypes.STRING,
+    code: DataTypes.STRING,
+    customerName: DataTypes.STRING,
+    customerPhone: DataTypes.STRING,
+    customerAddress: DataTypes.TEXT,
     tableNumber: DataTypes.INTEGER,
     deliveryPerson: DataTypes.STRING,
     status: DataTypes.STRING

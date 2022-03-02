@@ -1,9 +1,14 @@
 const orderService = require('../services/OrderService');
 
 async function saveOrder(req, res) {
-    await orderService.saveOrder(req, res);
+    return await orderService.saveOrder(req, res);
+}
+
+async function orderStatusChange(req, res) {
+    return await orderService.orderStatusChange(req, res);
 }
 
 module.exports = {
-    saveOrder : saveOrder
+    saveOrder : saveOrder,
+    orderStatusChange: orderStatusChange
 }

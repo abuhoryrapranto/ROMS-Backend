@@ -11,17 +11,19 @@ const menuRoutes = require('./routes/menu')
 const categoryRoutes = require('./routes/category')
 const userRoutes = require('./routes/user')
 const orderRoutes = require('./routes/order')
+const cashBoxRoutes = require('./routes/cashbox')
 
 app.use(function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
   next();
 });
 
-app.use('/api', authRoutes);
-app.use('/api', orderRoutes);
-app.use('/api', auth, menuRoutes);
-app.use('/api', auth, categoryRoutes);
-app.use('/api', auth, userRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/cash-boxes', cashBoxRoutes);
+app.use('/api/v1/menus', auth, menuRoutes);
+app.use('/api/v1/categories', auth, categoryRoutes);
+app.use('/api/v1/user', auth, userRoutes);
 
 
 app.listen(port, () => {

@@ -5,6 +5,6 @@ var userController = require('../controllers/UserController')
 
 v1Router.get('/infos', userController.getUserInfos)
 
-const v1UserRoutes = app.use('/v1/user', v1Router);
+const v1UserRoutes = app.use(v1Router);
 
 module.exports = v1UserRoutes

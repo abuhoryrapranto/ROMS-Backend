@@ -1,34 +1,24 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Orders', {
+    await queryInterface.createTable('CashBoxes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      uuid: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+      open: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
+      close: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
+      balance: {
+        type: Sequelize.DECIMAL(8,2),
         allowNull: false
-      },
-      code: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      menuId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Menus', key: 'id' }
-      },
-      variant: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      price: {
-        type: Sequelize.DECIMAL(5,2),
-        allowNull: false,
       },
       status: {
         type: Sequelize.BOOLEAN,
@@ -48,6 +38,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('CashBoxes');
   }
 };

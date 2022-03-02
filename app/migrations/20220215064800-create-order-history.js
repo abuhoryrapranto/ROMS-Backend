@@ -13,9 +13,22 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false
       },
-      orderId: {
+      code: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
+      },
+      customerName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      customerPhone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      customerAddress: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       tableNumber: {
         type: Sequelize.INTEGER,

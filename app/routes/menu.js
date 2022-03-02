@@ -7,6 +7,6 @@ v1Router.get('/all', menuController.getAllMenus)
 v1Router.post('/save', menuController.saveMenu)
 v1Router.put('/update/:id', menuController.updateMenu)
 
-const v1MenuRoutes = app.use('/v1/menu', v1Router);
+const v1MenuRoutes = app.use(v1Router);
 
 module.exports = v1MenuRoutes
