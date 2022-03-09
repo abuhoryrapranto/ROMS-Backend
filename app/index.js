@@ -13,11 +13,6 @@ const userRoutes = require('./routes/user')
 const orderRoutes = require('./routes/order')
 const cashBoxRoutes = require('./routes/cashbox')
 
-app.use(function(req, res, next) {
-  res.setHeader("Content-Type", "application/json");
-  next();
-});
-
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/orders', orderRoutes);
 app.use('/api/v1/cash-boxes', cashBoxRoutes);
