@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "restroportal",
-    "host": "127.0.0.1",
+    "username": "uiifw32yjm8vpyg9",
+    "password": "MiFncZ7wrakqL8JrFcYz",
+    "database": "bqhse363xpo3x9ul3m7w",
+    "host": "bqhse363xpo3x9ul3m7w-mysql.services.clever-cloud.com",
     "dialect": "mysql",
     "port": "3306"
   },
