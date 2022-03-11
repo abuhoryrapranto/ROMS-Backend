@@ -1,6 +1,7 @@
 const express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+var cookieParser = require('cookie-parser');
 const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ const orderRoutes = require('./routes/order')
 const cashBoxRoutes = require('./routes/cashbox')
 
 app.use(cors());
+app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/orders', orderRoutes);

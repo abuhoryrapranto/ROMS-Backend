@@ -50,9 +50,13 @@ async function login(req, res) {
 
                     const token = jwt.sign({id:existEmail.uuid, email: existEmail.email}, process.env.JWT_SECRET, { expiresIn: '10h' });
                     
-                    if(!token) return res.status(500).send({'status': 200,'message': "Something went wrong"});
+                    if(token) {
 
-                    return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
+                        res.cookie('token', token, { httpOnly: true});
+                        return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
+                    } 
+
+                    return res.status(500).send({'status': 500,'message': "Something went wrong"});
 
                 } else {
 
