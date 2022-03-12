@@ -67,8 +67,8 @@ async function login(req, res) {
                 return res.status(404).send({'status': 404,'message': "Email not found"});
             }
         }
-    }
-    catch(err) {
+    } catch(err) {
+
         return res.status(422).send({'status': 422,'message': err});
     }
 }
