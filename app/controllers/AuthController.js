@@ -52,7 +52,7 @@ async function login(req, res) {
                     
                     if(token) {
 
-                        res.cookie('token', token, { httpOnly: true});
+                        //res.cookie('token', token, { httpOnly: true});
                         return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
                     } 
 
