@@ -5,7 +5,7 @@ const {generateSlug} = require('../helpers/baseHelper');
 async function getAllMenus(req, res) {
     const menus = await Menu.findAll({ include: [Category]});
     if(menus)
-        return res.status(201).send({'status': 200,'message': "Categories found", 'data': menus});
+        return res.status(200).send({'status': 200,'message': "Categories found", 'data': menus});
     return res.status(404).send({'status': 404,'message': 'Categories not found'});
 }
 
