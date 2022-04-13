@@ -17,6 +17,7 @@ const saveMenuValidation = Joi.object({
                     .label('Main Price'),
 
     offerPrice: Joi.number()
+                    .allow(null)
                     .label('Offer Price'),
     
     type: Joi.string()
@@ -35,6 +36,7 @@ const updateMenuValidation = Joi.object({
                     .label('Main Price'),
 
     offerPrice: Joi.number()
+                    .allow(null)
                     .label('Offer Price'),
     
     type: Joi.string()
