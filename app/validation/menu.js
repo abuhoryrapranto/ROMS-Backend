@@ -33,6 +33,8 @@ const updateMenuValidation = Joi.object({
                 .label('Menu Name'),
 
     mainPrice: Joi.number()
+                    .optional()
+                    .allow(null)
                     .label('Main Price'),
 
     offerPrice: Joi.number()
