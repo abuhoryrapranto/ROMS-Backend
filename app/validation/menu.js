@@ -8,6 +8,8 @@ const saveMenuValidation = Joi.object({
     categoryId: Joi.number(),
     
     variants: Joi.string()
+                .optional()
+                .allow(null)
                 .label('Variants'),
 
     mainPrice: Joi.number()
