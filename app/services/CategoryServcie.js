@@ -2,11 +2,11 @@ const { Category } = require('../models');
 const {saveCategoryValidation, updateCategoryValidation} = require('../validation/category');
 
 async function getAllCategories(req, res, deactive=true) {
-
+    let categories;
     if(deactive === true) {
-        const categories = await Category.findAll(); 
+        categories = await Category.findAll(); 
     } else {
-        const categories = await Category.findAll({where:{status: 1}});
+        categories = await Category.findAll({where:{status: 1}});
     }
     
     if(categories)
