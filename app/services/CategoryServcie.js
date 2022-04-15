@@ -2,7 +2,7 @@ const { Category } = require('../models');
 const {saveCategoryValidation, updateCategoryValidation} = require('../validation/category');
 
 async function getAllCategories(req, res) {
-    const categories = await Category.findAll();
+    const categories = await Category.findAll({where:{status: 1}});
     if(categories)
         return res.status(200).send({'status': 200,'message': "Categories found", 'data': categories});
     return res.status(404).send({'status': 404,'message': 'Categories not found'});
