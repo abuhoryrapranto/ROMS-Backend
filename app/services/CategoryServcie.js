@@ -4,13 +4,13 @@ const {saveCategoryValidation, updateCategoryValidation} = require('../validatio
 async function getAllCategories(req, res) {
     
     let categories;
-    if(req.query.deactive === true) {
+    if(req.query.deactive === "true") {
         categories = await Category.findAll(); 
     } else {
         categories = await Category.findAll({where:{status: 1}});
     }
-    
-    if(categories)
+
+    if(categories.length > 0)
         return res.status(200).send({'status': 200,'message': "Categories found", 'data': categories});
     return res.status(404).send({'status': 404,'message': 'Categories not found'});
 }
