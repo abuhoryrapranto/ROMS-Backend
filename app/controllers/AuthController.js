@@ -37,22 +37,38 @@ async function register(req, res) {
 async function login(req, res) {
     try {
         const value = await loginValidation.validateAsync(req.body, {abortEarly: false});
+
         if(value) {
+
             const existEmail = await User.findOne({ where: { email: req.body.email } });
+
             if(existEmail) {
+
                 const match = await bcrypt.compare(req.body.password, existEmail.password);
+                
                 if(match) {
+
                     const token = jwt.sign({id:existEmail.uuid, email: existEmail.email}, process.env.JWT_SECRET, { expiresIn: '10h' });
-                    return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
-                }else {
+                    
+                    if(token) {
+
+                        //res.cookie('token', token, { httpOnly: true});
+                        return res.status(200).send({'status': 200,'message': "Successfully login", 'token': token});
+                    } 
+
+                    return res.status(500).send({'status': 500,'message': "Something went wrong"});
+
+                } else {
+
                     return res.status(404).send({'status': 404,'message': "Password not match"});
                 }
-            }else {
+             } else {
+                 
                 return res.status(404).send({'status': 404,'message': "Email not found"});
             }
         }
-    }
-    catch(err) {
+    } catch(err) {
+
         return res.status(422).send({'status': 422,'message': err});
     }
 }

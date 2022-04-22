@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "restroportal",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "8889"
+    "port": "3306"
   },
   "test": {
     "username": "root",
@@ -15,10 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "uiifw32yjm8vpyg9",
+    "password": "MiFncZ7wrakqL8JrFcYz",
+    "database": "bqhse363xpo3x9ul3m7w",
+    "host": "bqhse363xpo3x9ul3m7w-mysql.services.clever-cloud.com",
+    "dialect": "mysql",
+    "port": "3306"
   }
 }

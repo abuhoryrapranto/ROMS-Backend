@@ -1,5 +1,7 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+var cors = require('cors')
+var cookieParser = require('cookie-parser');
 const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,10 +15,8 @@ const userRoutes = require('./routes/user')
 const orderRoutes = require('./routes/order')
 const cashBoxRoutes = require('./routes/cashbox')
 
-app.use(function(req, res, next) {
-  res.setHeader("Content-Type", "application/json");
-  next();
-});
+app.use(cors());
+app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/orders', orderRoutes);
