@@ -6,7 +6,7 @@ const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 require('dotenv').config()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 const { auth } = require('./app/middlewares/auth')
 const authRoutes = require('./app/routes/auth')
 const menuRoutes = require('./app/routes/menu')
