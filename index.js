@@ -19,7 +19,7 @@ app.use(cors());
 app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/orders', auth, orderRoutes);
 app.use('/api/v1/cash-boxes', cashBoxRoutes);
 app.use('/api/v1/menus', auth, menuRoutes);
 app.use('/api/v1/categories', auth, categoryRoutes);
